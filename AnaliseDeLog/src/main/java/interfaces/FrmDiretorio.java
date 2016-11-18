@@ -12,6 +12,7 @@ import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
 
+@SuppressWarnings("ALL")
 public class FrmDiretorio extends JFrame  {
 
 
@@ -103,6 +104,7 @@ public class FrmDiretorio extends JFrame  {
 
             File arquivo = new File(caminho);
             try {
+
                 if (arquivo.listFiles().length == 0)
                     throw new NullPointerException();
                 for (File f : arquivo.listFiles()) {

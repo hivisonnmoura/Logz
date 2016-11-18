@@ -1,7 +1,6 @@
 package interfaces;
 
 import entidades.EntidadeThread;
-import objetodevalor.Regex;
 import repositorios.RepositorioThread;
 import servicos.ServicoFachada;
 import servicos.ServicoPopulaFrmStack;
@@ -9,17 +8,12 @@ import servicos.ServicoPopulaFrmStack;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
-import javax.swing.text.BadLocationException;
-import javax.swing.text.DefaultHighlighter;
-import javax.swing.text.Highlighter;
 import java.awt.*;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.ClipboardOwner;
 import java.awt.datatransfer.StringSelection;
 import java.awt.datatransfer.Transferable;
 import java.awt.event.KeyAdapter;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class FrmStack extends JFrame {
 
