@@ -14,6 +14,7 @@ import javax.swing.*;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class ServicoFachada {
 
@@ -23,10 +24,13 @@ public class ServicoFachada {
     private RepositorioNo repositorioNo = new RepositorioNo();
     private RepositorioThread repositorioThread = new RepositorioThread();
     private ServicoValidadorDeNos servicoValidadorDeNos = new ServicoValidadorDeNos();
+    private ServicoTratamentoExcessao servicoTratamentoExcessao = new ServicoTratamentoExcessao();
 
 
-    public File solicitarServicoDescompactador(String caminho, List<String> ListaArquivo) {
-        File file = servicoDescompactador.extrairLogs(caminho, ListaArquivo);
+
+
+    public File solicitarServicoDescompactador(String caminho, List<String> listaArquivo) {
+        File file = servicoDescompactador.extrairLogs(caminho, listaArquivo);
         solicitarServicoValidadorDeNos(file);
 
         return file;
@@ -134,4 +138,10 @@ public class ServicoFachada {
 
         return ListaArquivo;
     }
+
+    public void solicitaTratamentoDeExcessaoDiretorioInvalido(JButton btnLocalizar, JTextArea textArea) {
+            servicoTratamentoExcessao.tratamentoDeExcessaoDiretorioInvalido(btnLocalizar,textArea);
+    }
+
+
 }

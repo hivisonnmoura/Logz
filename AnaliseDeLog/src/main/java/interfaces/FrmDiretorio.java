@@ -108,6 +108,7 @@ public class FrmDiretorio extends JFrame  {
                 this.dispose();
 
             } catch (NullPointerException nullPointer) {
+                servicoFachada.solicitaTratamentoDeExcessaoDiretorioInvalido(btnLocalizar, textArea);
                 String erroAoSelecionarDiretorio = "Diretório inválido";
                 JOptionPane.showMessageDialog(null, erroAoSelecionarDiretorio, "Erro ao localizar diretório", JOptionPane.ERROR_MESSAGE);
                 setCursor(DEFAULT_CURSOR);

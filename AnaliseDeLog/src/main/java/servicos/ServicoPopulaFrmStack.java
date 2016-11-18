@@ -8,6 +8,8 @@ import javax.swing.text.BadLocationException;
 import javax.swing.text.DefaultHighlighter;
 import javax.swing.text.Highlighter;
 import java.awt.*;
+import java.util.*;
+import java.util.List;
 import java.util.regex.Matcher;
 
 
@@ -15,12 +17,12 @@ public class ServicoPopulaFrmStack {
     ServicoFachada servicoFachada = new ServicoFachada();
 
     public void populaFrmStack(JComboBox comboBox, JTextArea jTextArea){
-        String stringStack1 = String.join("\n", servicoFachada.direcionaStack((EntidadeThread) comboBox.getSelectedItem()));
-        jTextArea.setText(stringStack1);
+        String stringStack = String.join("\n", servicoFachada.direcionaStack((EntidadeThread) comboBox.getSelectedItem()));
+        jTextArea.setText(stringStack);
 
-        if (stringStack1.contains("locked")) {
+        if (stringStack.contains("locked")) {
             Regex regexDelimitaLinhasComLocked = Regex.REGEX_DELIMITA_LINHA_LOCKED;
-            Matcher matcher = regexDelimitaLinhasComLocked.getPattern().matcher(stringStack1);
+            Matcher matcher = regexDelimitaLinhasComLocked.getPattern().matcher(stringStack);
             while (matcher.find()) {
                 int inicio = matcher.start();
                 int fim = matcher.end();
@@ -36,9 +38,9 @@ public class ServicoPopulaFrmStack {
                 }
             }
         }
-        if (stringStack1.contains("waiting")) {
+        if (stringStack.contains("waiting")) {
             Regex regexDelimitaLinhasComWaiting = Regex.REGEX_DELIMITA_LINHA_WAITING;
-            Matcher matcher = regexDelimitaLinhasComWaiting.getPattern().matcher(stringStack1);
+            Matcher matcher = regexDelimitaLinhasComWaiting.getPattern().matcher(stringStack);
             while (matcher.find()) {
                 int inicio = matcher.start();
                 int fim = matcher.end();
@@ -56,9 +58,9 @@ public class ServicoPopulaFrmStack {
                 }
             }
         }
-        if (stringStack1.contains("soluziona")) {
+        if (stringStack.contains("soluziona")) {
             Regex regexDelimitaLinhasComSoluziona = Regex.REGEX_DELIMITA_LINHA_SOLUZINA;
-            Matcher matcher = regexDelimitaLinhasComSoluziona.getPattern().matcher(stringStack1);
+            Matcher matcher = regexDelimitaLinhasComSoluziona.getPattern().matcher(stringStack);
             while (matcher.find()) {
                 int inicio = matcher.start() + 1;
                 int fim = matcher.end();
