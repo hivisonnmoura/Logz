@@ -125,7 +125,7 @@ public class FrmDiretorio extends JFrame  {
                 this.dispose();
 
             } catch (NullPointerException nullPointer) {
-                servicoTratamentoExcessao.tratamentoDeExcessaoDiretorioInvalido(btnLocalizar, textArea);
+                servicoFachada.solicitarServicoTratamentoExcecao(btnLocalizar, textArea);
                 setCursor(DEFAULT_CURSOR);
             }
         });

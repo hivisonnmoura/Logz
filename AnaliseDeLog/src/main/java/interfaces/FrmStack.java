@@ -74,8 +74,8 @@ public class FrmStack extends JFrame {
 
         comboBox.setSelectedIndex(-1);
         comboBox.addActionListener(e -> {
-            ServicoPopulaFrmStack servicoPopulaFrmStack = new ServicoPopulaFrmStack();
-            servicoPopulaFrmStack.populaFrmStack(comboBox,jTextArea);
+            servicoFachada.solicitarServicoPopulaFrmStack(comboBox,jTextArea);
+
         });
         comboBox.setBounds(412, 55, 205, 20);
         contentPane.add(comboBox);

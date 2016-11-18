@@ -22,6 +22,7 @@ public class ServicoFachada {
     private RepositorioNo repositorioNo = new RepositorioNo();
     private RepositorioThread repositorioThread = new RepositorioThread();
     private ServicoValidadorDeNos servicoValidadorDeNos = new ServicoValidadorDeNos();
+    private ServicoTratamentoExcessao servicoTratamentoExcessao = new ServicoTratamentoExcessao();
 
 
     public File solicitarServicoDescompactador(String caminho, List<String> ListaArquivo) {
@@ -116,4 +117,12 @@ public class ServicoFachada {
     }
 
 
+    public void solicitarServicoPopulaFrmStack(JComboBox<Object> comboBox, JTextArea jTextArea) {
+        ServicoPopulaFrmStack servicoPopulaFrmStack = new ServicoPopulaFrmStack();
+        servicoPopulaFrmStack.populaFrmStack(comboBox,jTextArea);
+    }
+
+    public void solicitarServicoTratamentoExcecao(JButton btnLocalizar, JTextArea textArea) {
+        servicoTratamentoExcessao.tratamentoDeExcessaoDiretorioInvalido(btnLocalizar, textArea);
+    }
 }
