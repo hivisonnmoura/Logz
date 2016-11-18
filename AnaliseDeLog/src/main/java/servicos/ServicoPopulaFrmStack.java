@@ -17,8 +17,13 @@ public class ServicoPopulaFrmStack {
     ServicoFachada servicoFachada = new ServicoFachada();
 
     public void populaFrmStack(JComboBox comboBox, JTextArea jTextArea){
+<<<<<<< HEAD
+        String stringStack1 = String.join("\n", servicoFachada.solicitarDirecionaStack((EntidadeThread) comboBox.getSelectedItem()));
+        jTextArea.setText(stringStack1);
+=======
         String stringStack = String.join("\n", servicoFachada.direcionaStack((EntidadeThread) comboBox.getSelectedItem()));
         jTextArea.setText(stringStack);
+>>>>>>> branch 'master' of https://github.com/hivisonnmoura/Logz
 
         if (stringStack.contains("locked")) {
             Regex regexDelimitaLinhasComLocked = Regex.REGEX_DELIMITA_LINHA_LOCKED;
