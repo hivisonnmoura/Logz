@@ -37,9 +37,6 @@ public class FrmStack extends JFrame {
     public FrmStack() {
         setTitle("Logz - An\u00E1lise de stacks");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
-        int altura = gd.getDisplayMode().getHeight() - 70;
-        int largura = gd.getDisplayMode().getWidth() - 70;
         setBounds(100, 100, 899, 708);
 
         JPanel contentPane = new JPanel();
