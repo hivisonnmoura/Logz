@@ -94,23 +94,14 @@ public class FrmDiretorio extends JFrame  {
         contentPane.add(btnDescompactar);
         btnDescompactar.addActionListener(e -> {
 
-            List<String> ListaArquivo = new ArrayList<>();
             String caminho = txtInserirDiretrio.getText();
             setCursor(WAIT_CURSOR);
-            File arquivo = new File(caminho);
-            try {
-                if (arquivo.listFiles().length == 0)
-                    throw new NullPointerException();
-                for (File f : arquivo.listFiles()) {
-                    if (f.isFile()) {
-                        if (f.getName().endsWith(".tar.gz")) {
-                            ListaArquivo.add(f.getName());
-                        } else {
-                            throw new NullPointerException();
-                        }
-                    }
-                }
 
+            File arquivo = new File(caminho);
+
+            try {
+
+                List<String> ListaArquivo = servicoFachada.identificarQuantidadeTarGz(arquivo);
                 servicoFachada.solicitarServicoDescompactador(caminho, ListaArquivo);
                 setCursor(DEFAULT_CURSOR);
                 textArea.setText(null);

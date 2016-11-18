@@ -12,6 +12,7 @@ import utilidades.ProcessaStacksUtil;
 
 import javax.swing.*;
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ServicoFachada {
@@ -116,4 +117,21 @@ public class ServicoFachada {
     }
 
 
+    public List<String> identificarQuantidadeTarGz(File arquivo) {
+        List<String> ListaArquivo = new ArrayList<>();
+
+        if (arquivo.listFiles().length == 0)
+            throw new NullPointerException();
+        for (File f : arquivo.listFiles()) {
+            if (f.isFile()) {
+                if (f.getName().endsWith(".tar.gz")) {
+                    ListaArquivo.add(f.getName());
+                } else {
+                    throw new NullPointerException();
+                }
+            }
+        }
+
+        return ListaArquivo;
+    }
 }
