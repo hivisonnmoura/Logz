@@ -1,7 +1,6 @@
 package interfaces;
 
 import servicos.ServicoFachada;
-import servicos.ServicoTratamentoExcessao;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -12,14 +11,12 @@ import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
 
-@SuppressWarnings("ALL")
 public class FrmDiretorio extends JFrame  {
 
 
     private static final long serialVersionUID = 1L;
     private JTextField txtInserirDiretrio;
     ServicoFachada servicoFachada = new ServicoFachada();
-    ServicoTratamentoExcessao servicoTratamentoExcessao = new ServicoTratamentoExcessao();
 
 
     public static void main(String[] args){
@@ -97,34 +94,26 @@ public class FrmDiretorio extends JFrame  {
         contentPane.add(btnDescompactar);
         btnDescompactar.addActionListener(e -> {
 
-            List<String> ListaArquivo = new ArrayList<>();
             String caminho = txtInserirDiretrio.getText();
-            textArea.setVisible(true);
             setCursor(WAIT_CURSOR);
 
             File arquivo = new File(caminho);
+
             try {
 
-                if (arquivo.listFiles().length == 0)
-                    throw new NullPointerException();
-                for (File f : arquivo.listFiles()) {
-                    if (f.isFile()) {
-                        if (f.getName().endsWith(".tar.gz")) {
-                            ListaArquivo.add(f.getName());
-                        } else {
-                            throw new NullPointerException();
-                        }
-                    }
-                }
-
+                List<String> ListaArquivo = servicoFachada.identificarQuantidadeTarGz(arquivo);
                 servicoFachada.solicitarServicoDescompactador(caminho, ListaArquivo);
                 setCursor(DEFAULT_CURSOR);
                 textArea.setText(null);
                 this.dispose();
 
             } catch (NullPointerException nullPointer) {
-                servicoTratamentoExcessao.tratamentoDeExcessaoDiretorioInvalido(btnLocalizar, textArea);
+                servicoFachada.solicitaTratamentoDeExcessaoDiretorioInvalido(btnLocalizar, textArea);
+                String erroAoSelecionarDiretorio = "Diretório inválido";
+                JOptionPane.showMessageDialog(null, erroAoSelecionarDiretorio, "Erro ao localizar diretório", JOptionPane.ERROR_MESSAGE);
                 setCursor(DEFAULT_CURSOR);
+                textArea.setText(null);
+                btnLocalizar.doClick();
             }
         });
 

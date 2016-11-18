@@ -11,10 +11,13 @@ import utilidades.DirecionaStack;
 import utilidades.ProcessaDadosDoNo;
 import javax.swing.*;
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class ServicoFachada {
 
+<<<<<<< HEAD
 	private ServicoDescompactador servicoDescompactador = new ServicoDescompactador();
 	private ProcessaDadosDoNo processaDadosDoNo = new ProcessaDadosDoNo();
 	private RepositorioProcesso repositorioProcesso = new RepositorioProcesso();
@@ -22,13 +25,30 @@ public class ServicoFachada {
 	private RepositorioThread repositorioThread = new RepositorioThread();
 	private ServicoValidadorDeNos servicoValidadorDeNos = new ServicoValidadorDeNos();
 	private DirecionaStack direcionaStack = new DirecionaStack();
+=======
+    private ServicoDescompactador servicoDescompactador = new ServicoDescompactador();
+    private ProcessaDadosDoNo processaDadosDoNo = new ProcessaDadosDoNo();
+    private RepositorioProcesso repositorioProcesso = new RepositorioProcesso();
+    private RepositorioNo repositorioNo = new RepositorioNo();
+    private RepositorioThread repositorioThread = new RepositorioThread();
+    private ServicoValidadorDeNos servicoValidadorDeNos = new ServicoValidadorDeNos();
+    private ServicoTratamentoExcessao servicoTratamentoExcessao = new ServicoTratamentoExcessao();
+>>>>>>> branch 'master' of https://github.com/hivisonnmoura/Logz
 
 	public File solicitarServicoDescompactador(String caminho, List<String> ListaArquivo) {
 		File file = servicoDescompactador.extrairLogs(caminho, ListaArquivo);
 		solicitarServicoValidadorDeNos(file);
 
+<<<<<<< HEAD
 		return file;
 	}
+=======
+
+
+    public File solicitarServicoDescompactador(String caminho, List<String> listaArquivo) {
+        File file = servicoDescompactador.extrairLogs(caminho, listaArquivo);
+        solicitarServicoValidadorDeNos(file);
+>>>>>>> branch 'master' of https://github.com/hivisonnmoura/Logz
 
 	public void solicitarServicoValidadorDeNos(File file) {
 		servicoValidadorDeNos.listar(file);
@@ -92,5 +112,28 @@ public class ServicoFachada {
 	public void deletaStack() {
 		repositorioThread.delete();
 	}
+
+    public List<String> identificarQuantidadeTarGz(File arquivo) {
+        List<String> ListaArquivo = new ArrayList<>();
+
+        if (arquivo.listFiles().length == 0)
+            throw new NullPointerException();
+        for (File f : arquivo.listFiles()) {
+            if (f.isFile()) {
+                if (f.getName().endsWith(".tar.gz")) {
+                    ListaArquivo.add(f.getName());
+                } else {
+                    throw new NullPointerException();
+                }
+            }
+        }
+
+        return ListaArquivo;
+    }
+
+    public void solicitaTratamentoDeExcessaoDiretorioInvalido(JButton btnLocalizar, JTextArea textArea) {
+            servicoTratamentoExcessao.tratamentoDeExcessaoDiretorioInvalido(btnLocalizar,textArea);
+    }
+
 
 }

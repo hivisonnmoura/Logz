@@ -20,6 +20,7 @@ public class FrmStack extends JFrame {
     RepositorioThread repositorioThread = new RepositorioThread();
     private JTextArea jTextArea = new JTextArea();
     private ServicoFachada servicoFachada = new ServicoFachada();
+    private ServicoPopulaFrmStack servicoPopulaFrmStack = new ServicoPopulaFrmStack();
 
     public static void main(String[] args) {
 
@@ -74,8 +75,9 @@ public class FrmStack extends JFrame {
 
         comboBox.setSelectedIndex(-1);
         comboBox.addActionListener(e -> {
-            ServicoPopulaFrmStack servicoPopulaFrmStack = new ServicoPopulaFrmStack();
             servicoPopulaFrmStack.populaFrmStack(comboBox,jTextArea);
+
+
         });
         comboBox.setBounds(412, 55, 205, 20);
         contentPane.add(comboBox);
