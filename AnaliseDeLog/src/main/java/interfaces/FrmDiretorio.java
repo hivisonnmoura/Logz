@@ -35,7 +35,7 @@ public class FrmDiretorio extends JFrame  {
 
 
     public FrmDiretorio() {
-        setTitle("Logz");
+        setTitle("LogZ");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(500, 300, 444, 339);
         JPanel contentPane = new JPanel();
