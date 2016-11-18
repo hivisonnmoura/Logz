@@ -1,7 +1,6 @@
 package interfaces;
 
 import entidades.EntidadeThread;
-import objetodevalor.Regex;
 import repositorios.RepositorioThread;
 import servicos.ServicoFachada;
 import servicos.ServicoPopulaFrmStack;
@@ -9,17 +8,12 @@ import servicos.ServicoPopulaFrmStack;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
-import javax.swing.text.BadLocationException;
-import javax.swing.text.DefaultHighlighter;
-import javax.swing.text.Highlighter;
 import java.awt.*;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.ClipboardOwner;
 import java.awt.datatransfer.StringSelection;
 import java.awt.datatransfer.Transferable;
 import java.awt.event.KeyAdapter;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class FrmStack extends JFrame {
 
@@ -43,10 +37,7 @@ public class FrmStack extends JFrame {
     public FrmStack() {
         setTitle("Logz - An\u00E1lise de stacks");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
-        int altura = gd.getDisplayMode().getHeight() - 70;
-        int largura = gd.getDisplayMode().getWidth() - 70;
-        setBounds(100, 100, largura + 10, altura + 10);
+        setBounds(100, 100, 899, 708);
 
         JPanel contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -54,7 +45,7 @@ public class FrmStack extends JFrame {
         contentPane.setLayout(null);
 
         JLabel lblSelecioneAThread = new JLabel("Selecione a Thread desejada: ");
-        lblSelecioneAThread.setBounds((largura / 2) - 170, (int) (altura * 0.05), 256, 14);
+        lblSelecioneAThread.setBounds(412, 35, 256, 14);
         contentPane.add(lblSelecioneAThread);
 
         setLocationRelativeTo(null);
@@ -86,22 +77,24 @@ public class FrmStack extends JFrame {
             ServicoPopulaFrmStack servicoPopulaFrmStack = new ServicoPopulaFrmStack();
             servicoPopulaFrmStack.populaFrmStack(comboBox,jTextArea);
         });
-        comboBox.setBounds((largura / 2) - 170, (int) (altura * 0.08), 170, 20);
+        comboBox.setBounds(412, 55, 205, 20);
         contentPane.add(comboBox);
 
         JPanel panel = new JPanel();
         panel.setBorder(new TitledBorder(null, "Descri\u00E7\u00E3o da Stack da Thread escolhida", TitledBorder.LEADING,
                 TitledBorder.TOP, null, null));
-        panel.setBounds(12, 97, 1271, 545);
+        panel.setBounds(12, 97, 859, 545);
 
         contentPane.add(panel);
         panel.setLayout(null);
 
         JScrollPane sp = new JScrollPane();
-        sp.setBounds(10, 24, (int) (largura * 0.96), (int) (altura * 0.729));
+        sp.setBounds(10, 24, 839, 508);
         sp.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
         sp.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
         panel.add(sp);
+        jTextArea.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+        jTextArea.setEditable(false);
         sp.setViewportView(jTextArea);
 
 
@@ -112,7 +105,7 @@ public class FrmStack extends JFrame {
 
 
         JButton btnRetornar = new JButton("Retornar");
-        btnRetornar.setBounds(((int) ((largura * 0.01))), (int) (altura * 0.92), 89, 23);
+        btnRetornar.setBounds(12, 642, 89, 23);
         btnRetornar.addActionListener(arg0 -> {
             servicoFachada.deletaStack();
             FrmNodos telaDois = new FrmNodos();
@@ -134,21 +127,21 @@ public class FrmStack extends JFrame {
             board.setContents((Transferable) selection, selection);
 
         });
-        btnNewButton.setBounds((largura / 2 - 89 / 2), (int) (altura * 0.92), 89, 23);
+        btnNewButton.setBounds(392, 642, 89, 23);
         contentPane.add(btnNewButton);
 
         JButton btnNewButton_1 = new JButton("Fechar");
         btnNewButton_1.addActionListener(e -> setVisible(false));
-        btnNewButton_1.setBounds(((int) (largura * 0.99 - 89)), (int) (altura * 0.92), 89, 23);
+        btnNewButton_1.setBounds(781, 642, 89, 23);
         contentPane.add(btnNewButton_1);
 
         JLabel lblProcessoLwpid = new JLabel("Tipo Thread - Processo - LWPID");
-        lblProcessoLwpid.setBounds(289, 55, 192, 20);
+        lblProcessoLwpid.setBounds(191, 55, 192, 20);
         contentPane.add(lblProcessoLwpid);
 
         JPanel panel_1 = new JPanel();
         panel_1.setBorder(new TitledBorder(null, "Legenda", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-        panel_1.setBounds(1194,11 , 89, 78);
+        panel_1.setBounds(781,11 , 89, 78);
         contentPane.add(panel_1);
         panel_1.setLayout(null);
 

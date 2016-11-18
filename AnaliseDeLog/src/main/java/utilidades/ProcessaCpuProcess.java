@@ -32,6 +32,7 @@ class ProcessaCpuProcess {
             ioe.printStackTrace();
         }
 
+        assert linhaCpuProcess != null;
         cpuProcessDados = linhaCpuProcess.split("\\s+");
         cpuProcessDados[0] = cpuProcessAtributos[3];
 
