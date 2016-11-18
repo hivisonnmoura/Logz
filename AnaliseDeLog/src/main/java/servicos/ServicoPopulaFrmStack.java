@@ -15,7 +15,7 @@ public class ServicoPopulaFrmStack {
     ServicoFachada servicoFachada = new ServicoFachada();
 
     public void populaFrmStack(JComboBox comboBox, JTextArea jTextArea){
-        String stringStack1 = String.join("\n", servicoFachada.direcionaStack((EntidadeThread) comboBox.getSelectedItem()));
+        String stringStack1 = String.join("\n", servicoFachada.solicitarDirecionaStack((EntidadeThread) comboBox.getSelectedItem()));
         jTextArea.setText(stringStack1);
 
         if (stringStack1.contains("locked")) {
