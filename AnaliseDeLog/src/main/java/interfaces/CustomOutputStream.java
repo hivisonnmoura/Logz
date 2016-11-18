@@ -4,8 +4,8 @@ import javax.swing.*;
 import java.io.IOException;
 import java.io.OutputStream;
 
-public class CustomOutputStream extends OutputStream {
-    public JTextArea textArea;
+class CustomOutputStream extends OutputStream {
+    private JTextArea textArea;
 
     public CustomOutputStream(JTextArea textArea) {
         this.textArea = textArea;

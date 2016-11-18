@@ -1,6 +1,7 @@
 package interfaces;
 
 import servicos.ServicoFachada;
+import servicos.ServicoTratamentoExcessao;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -11,12 +12,14 @@ import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
 
+@SuppressWarnings("ALL")
 public class FrmDiretorio extends JFrame  {
 
 
     private static final long serialVersionUID = 1L;
     private JTextField txtInserirDiretrio;
     ServicoFachada servicoFachada = new ServicoFachada();
+    ServicoTratamentoExcessao servicoTratamentoExcessao = new ServicoTratamentoExcessao();
 
 
     public static void main(String[] args){
@@ -96,9 +99,12 @@ public class FrmDiretorio extends JFrame  {
 
             List<String> ListaArquivo = new ArrayList<>();
             String caminho = txtInserirDiretrio.getText();
+            textArea.setVisible(true);
             setCursor(WAIT_CURSOR);
+
             File arquivo = new File(caminho);
             try {
+
                 if (arquivo.listFiles().length == 0)
                     throw new NullPointerException();
                 for (File f : arquivo.listFiles()) {
@@ -117,11 +123,8 @@ public class FrmDiretorio extends JFrame  {
                 this.dispose();
 
             } catch (NullPointerException nullPointer) {
-                String erroAoSelecionarDiretorio = "Diretório inválido";
-                JOptionPane.showMessageDialog(null, erroAoSelecionarDiretorio, "Erro ao localizar diretório", JOptionPane.ERROR_MESSAGE);
+                servicoTratamentoExcessao.tratamentoDeExcessaoDiretorioInvalido(btnLocalizar, textArea);
                 setCursor(DEFAULT_CURSOR);
-                textArea.setText(null);
-                btnLocalizar.doClick();
             }
         });
 

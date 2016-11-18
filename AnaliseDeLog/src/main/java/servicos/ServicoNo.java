@@ -22,9 +22,9 @@ public class ServicoNo {
         return no;
     }
 
-    public EntidadeNo solicitarselectByData(String data) {
+    /*public EntidadeNo solicitarselectByData(String data) {
         return repositorioNo.selectByData(data);
-    }
+    }*/
 
     public ArrayList<EntidadeNo> buscarTodos() {
 
