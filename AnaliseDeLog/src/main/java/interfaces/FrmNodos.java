@@ -59,6 +59,7 @@ public class FrmNodos extends JFrame implements Serializable {
         contentPane.add(panelPlanilha);
 
         JScrollPane scrollPane = new JScrollPane();
+        scrollPane.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         scrollPane.setBounds(10, 21, 559, 332);
         panelPlanilha.add(scrollPane);
 
