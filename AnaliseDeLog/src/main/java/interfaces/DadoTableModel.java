@@ -8,8 +8,8 @@ import java.util.List;
 class DadoTableModel extends AbstractTableModel {
     private static final long serialVersionUID = 1L;
     private List<OVNoProcesso> dados;
-    private String[] colunas = {"Nome do No", "Data do No", "PID", "HH:MM:SS", "username", "CPU", "NLWP", "Process",
-            "Hora do Processo", "nome do arquivo"};
+    private String[] colunas = {"Nome do No", "Data do No", "PID","Hora do Processo", "username", "CPU", "NLWP", "Process",
+            "HH:MM:SS", "nome do arquivo"};
 
 
     public DadoTableModel(List<OVNoProcesso> ov) {
@@ -48,7 +48,7 @@ class DadoTableModel extends AbstractTableModel {
             case 2:
                 return dados.get(linha).getPid();
             case 3:
-                return dados.get(linha).getTime();
+                return dados.get(linha).getHoraDoProcesso();
             case 4:
                 return dados.get(linha).getUsername();
             case 5:
@@ -58,7 +58,7 @@ class DadoTableModel extends AbstractTableModel {
             case 7:
                 return dados.get(linha).getProcess();
             case 8:
-                return dados.get(linha).getHoraDoProcesso();
+                return dados.get(linha).getTime();
             case 9:
                 return dados.get(linha).getDiretorio();
 
