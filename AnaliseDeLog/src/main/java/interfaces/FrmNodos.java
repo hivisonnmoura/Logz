@@ -26,7 +26,7 @@ public class FrmNodos extends JFrame implements Serializable {
     private String caminhoDiretorio;
 
     private ServicoFachada servicoFachada = new ServicoFachada();
-    ServicoTratamentoExcessao servicoTratamentoExcessao = new ServicoTratamentoExcessao();
+    private ServicoTratamentoExcessao servicoTratamentoExcessao = new ServicoTratamentoExcessao();
 
     public static void main(String[] args) {
         EventQueue.invokeLater(() -> {
