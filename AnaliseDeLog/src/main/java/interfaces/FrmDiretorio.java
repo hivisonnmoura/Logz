@@ -37,7 +37,7 @@ public class FrmDiretorio extends JFrame  {
 
 
     public FrmDiretorio() {
-        setTitle("Logz");
+        setTitle("LogZ");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(500, 300, 444, 339);
         JPanel contentPane = new JPanel();
@@ -98,6 +98,7 @@ public class FrmDiretorio extends JFrame  {
 
             List<String> ListaArquivo = new ArrayList<>();
             String caminho = txtInserirDiretrio.getText();
+            textArea.setVisible(true);
             setCursor(WAIT_CURSOR);
 
             File arquivo = new File(caminho);
