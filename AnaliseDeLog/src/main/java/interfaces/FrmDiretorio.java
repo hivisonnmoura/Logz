@@ -96,6 +96,7 @@ public class FrmDiretorio extends JFrame  {
 
             List<String> ListaArquivo = new ArrayList<>();
             String caminho = txtInserirDiretrio.getText();
+            textArea.setVisible(true);
             setCursor(WAIT_CURSOR);
             File arquivo = new File(caminho);
             try {
