@@ -36,6 +36,7 @@ public class FrmStack extends JFrame {
     }
 
     public FrmStack() {
+        setResizable(false);
         setTitle("Logz - An\u00E1lise de stacks");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 899, 708);
