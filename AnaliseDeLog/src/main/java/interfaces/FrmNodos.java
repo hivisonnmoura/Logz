@@ -3,7 +3,7 @@ package interfaces;
 
 import objetodevalor.OVNoProcesso;
 import servicos.ServicoFachada;
-import servicos.ServicoTratamentoDeExcecaoSelecionaProcesso;
+import servicos.ServicoTratamentoExcessao;
 import utilidades.ProcessaDadosCpuCohere;
 import utilidades.ProcessaDadosCpuDetalhado;
 
@@ -26,6 +26,7 @@ public class FrmNodos extends JFrame implements Serializable {
     private String caminhoDiretorio;
 
     private ServicoFachada servicoFachada = new ServicoFachada();
+    ServicoTratamentoExcessao servicoTratamentoExcessao = new ServicoTratamentoExcessao();
 
     public static void main(String[] args) {
         EventQueue.invokeLater(() -> {
@@ -129,8 +130,7 @@ public class FrmNodos extends JFrame implements Serializable {
                 frmStack.setVisible(true);
                 setVisible(false);
             } catch (ArrayIndexOutOfBoundsException ex) {
-                ServicoTratamentoDeExcecaoSelecionaProcesso servicoTratamentoDeExcecaoSelecionaProcesso = new ServicoTratamentoDeExcecaoSelecionaProcesso();
-                servicoTratamentoDeExcecaoSelecionaProcesso.tratamentoExcecaoSelecionaNo();
+                servicoTratamentoExcessao.tratamentoDeExcessaoSelecionaProcesso();
             }
 
         });
