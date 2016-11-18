@@ -108,7 +108,7 @@ public class FrmStack extends JFrame {
 
 
         JButton btnRetornar = new JButton("Retornar");
-        btnRetornar.setBounds(((int) ((largura * 0.01))), (int) (altura * 0.92), 89, 23);
+        btnRetornar.setBounds(12, 642, 89, 23);
         btnRetornar.addActionListener(arg0 -> {
             servicoFachada.deletaStack();
             FrmNodos telaDois = new FrmNodos();
