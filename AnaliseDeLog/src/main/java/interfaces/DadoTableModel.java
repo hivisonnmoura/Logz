@@ -11,7 +11,6 @@ class DadoTableModel extends AbstractTableModel {
     private String[] colunas = {"Nome do No", "Data do No", "PID", "HH:MM:SS", "username", "CPU", "NLWP", "Process",
             "Hora do Processo", "nome do arquivo"};
 
-    //sdsdsda
 
     public DadoTableModel(List<OVNoProcesso> ov) {
         dados = ov;
