@@ -1,7 +1,6 @@
 package interfaces;
 
 import servicos.ServicoFachada;
-import servicos.ServicoTratamentoExcessao;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -9,19 +8,15 @@ import javax.swing.border.TitledBorder;
 import java.awt.*;
 import java.io.File;
 import java.io.PrintStream;
-
 import java.util.ArrayList;
 import java.util.List;
 
-
-@SuppressWarnings("ALL")
 public class FrmDiretorio extends JFrame  {
 
 
     private static final long serialVersionUID = 1L;
     private JTextField txtInserirDiretrio;
     ServicoFachada servicoFachada = new ServicoFachada();
-    ServicoTratamentoExcessao servicoTratamentoExcessao = new ServicoTratamentoExcessao();
 
 
     public static void main(String[] args){
@@ -32,9 +27,7 @@ public class FrmDiretorio extends JFrame  {
                 frame.setResizable(false);
                 frame.setVisible(true);
             } catch (Exception e) {
-
                 e.printStackTrace();
-
             }
         });
 
@@ -76,6 +69,7 @@ public class FrmDiretorio extends JFrame  {
             if (i != 1) {
 
                 File arquivo = file.getSelectedFile();
+                String caminho = arquivo.toString();
                 txtInserirDiretrio.setText(arquivo.getAbsolutePath());
 
 
@@ -99,34 +93,26 @@ public class FrmDiretorio extends JFrame  {
         btnDescompactar.setBounds(137, 266, 150, 23);
         contentPane.add(btnDescompactar);
         btnDescompactar.addActionListener(e -> {
-            List<String> listaArquivo = new ArrayList<>();
+
             String caminho = txtInserirDiretrio.getText();
-            textArea.setVisible(true);
             setCursor(WAIT_CURSOR);
 
             File arquivo = new File(caminho);
+
             try {
 
-                if (arquivo.listFiles().length == 0)
-                    throw new NullPointerException();
-                for (File f : arquivo.listFiles()) {
-                    if (f.isFile()) {
-                        if (f.getName().endsWith(".tar.gz")) {
-                            listaArquivo.add(f.getName());
-                        } else {
-                            throw new NullPointerException();
-                        }
-                    }
-                }
-
-                servicoFachada.solicitarServicoDescompactador(caminho, listaArquivo);
+                List<String> ListaArquivo = servicoFachada.identificarQuantidadeTarGz(arquivo);
+                servicoFachada.solicitarServicoDescompactador(caminho, ListaArquivo);
                 setCursor(DEFAULT_CURSOR);
                 textArea.setText(null);
                 this.dispose();
 
             } catch (NullPointerException nullPointer) {
-                servicoFachada.solicitarServicoTratamentoExcecao(btnLocalizar, textArea);
+                String erroAoSelecionarDiretorio = "Diretório inválido";
+                JOptionPane.showMessageDialog(null, erroAoSelecionarDiretorio, "Erro ao localizar diretório", JOptionPane.ERROR_MESSAGE);
                 setCursor(DEFAULT_CURSOR);
+                textArea.setText(null);
+                btnLocalizar.doClick();
             }
         });
 

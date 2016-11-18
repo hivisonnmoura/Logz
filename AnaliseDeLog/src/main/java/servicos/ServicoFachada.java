@@ -12,6 +12,7 @@ import utilidades.ProcessaStacksUtil;
 
 import javax.swing.*;
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ServicoFachada {
@@ -22,7 +23,6 @@ public class ServicoFachada {
     private RepositorioNo repositorioNo = new RepositorioNo();
     private RepositorioThread repositorioThread = new RepositorioThread();
     private ServicoValidadorDeNos servicoValidadorDeNos = new ServicoValidadorDeNos();
-    private ServicoTratamentoExcessao servicoTratamentoExcessao = new ServicoTratamentoExcessao();
 
 
     public File solicitarServicoDescompactador(String caminho, List<String> ListaArquivo) {
@@ -117,12 +117,21 @@ public class ServicoFachada {
     }
 
 
-    public void solicitarServicoPopulaFrmStack(JComboBox<Object> comboBox, JTextArea jTextArea) {
-        ServicoPopulaFrmStack servicoPopulaFrmStack = new ServicoPopulaFrmStack();
-        servicoPopulaFrmStack.populaFrmStack(comboBox,jTextArea);
-    }
+    public List<String> identificarQuantidadeTarGz(File arquivo) {
+        List<String> ListaArquivo = new ArrayList<>();
 
-    public void solicitarServicoTratamentoExcecao(JButton btnLocalizar, JTextArea textArea) {
-        servicoTratamentoExcessao.tratamentoDeExcessaoDiretorioInvalido(btnLocalizar, textArea);
+        if (arquivo.listFiles().length == 0)
+            throw new NullPointerException();
+        for (File f : arquivo.listFiles()) {
+            if (f.isFile()) {
+                if (f.getName().endsWith(".tar.gz")) {
+                    ListaArquivo.add(f.getName());
+                } else {
+                    throw new NullPointerException();
+                }
+            }
+        }
+
+        return ListaArquivo;
     }
 }
